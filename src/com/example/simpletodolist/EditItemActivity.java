@@ -1,16 +1,30 @@
 package com.example.simpletodolist;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
 
 public class EditItemActivity extends Activity {
 
+	EditText etExistingItem;
+	int itemIndex;
+	String itemName;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_edit_item);
+		etExistingItem = (EditText) findViewById(R.id.etExistingItem);		
+		itemName = getIntent().getStringExtra("itemName");
+		itemIndex = getIntent().getIntExtra("itemIndex", 0);
+		etExistingItem.setText(itemName);
+		etExistingItem.requestFocus();
+		etExistingItem.setSelection(itemName.length());
 	}
 
 	@Override
@@ -30,5 +44,14 @@ public class EditItemActivity extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	public void onEditSubmit(View v) {
+		String itemText = etExistingItem.getText().toString();
+		Intent data = new Intent();
+		data.putExtra("editedItem", itemText);
+		data.putExtra("editedItemPosition", itemIndex);
+		setResult(RESULT_OK, data);
+		finish();
 	}
 }

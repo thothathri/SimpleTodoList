@@ -9,7 +9,7 @@
     tools:context="com.example.simpletodolist.EditItemActivity" >
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/etExistingItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -23,12 +23,13 @@
     </EditText>
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/editButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText1"
+        android:layout_below="@+id/etExistingItem"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="28dp"
-        android:text="Button" />
+        android:onClick="onEditSubmit"
+        android:text="@string/save" />
 
 </RelativeLayout>

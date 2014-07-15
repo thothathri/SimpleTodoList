@@ -21,6 +21,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class TodoActivity extends Activity {
 	ArrayList<String> items;
@@ -105,6 +106,8 @@ public class TodoActivity extends Activity {
 			int editedItemPosition = data.getExtras().getInt("editedItemPosition");
 			items.set(editedItemPosition, editedItem);
 			itemsAdapter.notifyDataSetChanged();
+			String editedItemToast = new String(editedItem + " Saved!"); 
+			Toast.makeText(this, editedItemToast, Toast.LENGTH_SHORT).show();
 			writeItems();
 		}
 	}
